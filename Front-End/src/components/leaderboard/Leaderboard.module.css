@@ -1,0 +1,102 @@
+/* src/components/Leaderboard/Leaderboard.module.css */
+
+.leaderboardContainer {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f8fafc;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .leaderboardTable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 1.1rem;
+  }
+  
+  .leaderboardTable th,
+  .leaderboardTable td {
+    padding: 15px;
+  }
+  
+  .leaderboardTable thead {
+    background-color: #0563c2;
+    color: #fff;
+  }
+  
+  .tableRow:nth-child(even) {
+    background-color: #f1f5f9;
+  }
+  
+  .tableRow:hover {
+    background-color: #e2e8f0;
+  }
+  
+  .rankHeader,
+  .rankCell {
+    width: 10%;
+    text-align: center;
+  }
+  
+  .userHeader,
+  .userCell {
+    width: 60%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .scoreHeader,
+  .scoreCell {
+    width: 30%;
+    text-align: center;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+    border: 2px solid #ccc;
+  }
+  
+  .loaderContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+  }
+  
+  .loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #0563c2;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .error {
+    text-align: center;
+    color: #e53e3e;
+    font-size: 1.5rem;
+    margin-top: 50px;
+  }
+  

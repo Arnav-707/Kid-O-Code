@@ -1,0 +1,188 @@
+.nav {
+    color: rgb(174, 218, 242);
+    box-shadow: 0px 3px 5px #c3c2c2;
+    height: 3.2rem;
+    padding: 1rem;
+    z-index: 9999;
+    margin-bottom: 0.3rem;
+}
+button{
+    border-radius: 10px !important;
+}
+.nav .ul {
+    color: rgb(0, 0, 0);
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Adjust alignment */
+}
+
+
+
+.logo {
+    order: 1; /* Logo on the left */
+    flex-grow: 0;
+    margin-right: 1rem; /* Add some space after the logo */
+}
+
+.logo img {
+    display: block;
+    width: 5rem;
+}
+
+.menuButton,
+.categoriesButton {
+    order: 2; /* Place Editor and Courses next to the logo */
+    flex-grow: 0;
+    margin-right: 1rem; /* Add space between buttons */
+}
+
+.categoriesButton {
+    margin-right: 2rem; /* Increase space between Editor and Courses */
+}
+
+.udemyBusinessButton {
+    order: 3; /* Center remaining buttons */
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.loginButton,
+.signupButton {
+    column-gap: 10px;
+    order: 4; /* Login and Signup on the right */
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto; /* Push them to the right */
+}
+
+.langButton {
+    order: 5; /* Language icon at the end */
+    margin-left: 1rem; /* Add some space before the language icon */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.loginButton button,
+.signupButton button {
+    background-color: transparent;
+    border: 1px solid black;
+    font-weight: bold;
+    width: 5rem;
+    font-size: 1.2rem;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.signupButton button {
+    min-width: 6rem;
+    background-color: #000;
+    color: #fff;
+}
+
+.nav li {
+    display: flex;
+    justify-content: center;
+    min-width: auto;
+    padding: 0.5rem;
+}
+
+.nav button i:hover {
+    cursor: pointer;
+}
+
+.cartButton i {
+    font-size: 1.2rem;
+}
+
+@media only screen and (min-width: 800px) {
+    .searchButton,
+    .menuButton {
+        display: none !important;
+    }
+
+    .nav {
+        height: 5rem;
+    }
+
+    .categoriesButton,
+    .loginButton,
+    .signupButton,
+    .langButton {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+       
+    }
+
+    .logo {
+        flex-grow: initial;
+    }
+
+    .categoriesButton button {
+        border: none;
+        background-color: transparent;
+        padding: 10px;
+    }
+
+    .categoriesButton button:hover,
+    .cartButton button:hover,
+    .udemyBusinessButton button:hover {
+        color: #401b9c;
+    }
+
+    .loginButton button:hover {
+        background-color: whitesmoke;
+    }
+}
+
+@media only screen and (min-width: 921px) {
+    .cartButton i {
+        font-size: 1.5rem;
+    }
+
+    .teachOnUdemyButton {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .teachOnUdemyButton button {
+        background-color: transparent;
+        border: none;
+        min-width: 8rem;
+        cursor: pointer;
+    }
+
+    .teachOnUdemyButton button:hover {
+        color: #401b9c;
+    }
+}
+
+@media only screen and (min-width: 1081px) {
+    .udemyBusinessButton {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .udemyBusinessButton button {
+        background-color: transparent;
+        border: none;
+        min-width: 8rem !important;
+        cursor: pointer;
+    }
+
+    .teachOnUdemyButton button:hover {
+        color: #401b9c;
+    }
+}
+
+

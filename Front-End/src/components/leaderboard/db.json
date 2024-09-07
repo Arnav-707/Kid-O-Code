@@ -1,0 +1,7 @@
+{
+    "leaderboard": [
+      { "id": 1, "name": "Alice", "score": 950, "avatar": "https://i.pravatar.cc/150?img=1" },
+      { "id": 2, "name": "Bob", "score": 900, "avatar": "https://i.pravatar.cc/150?img=2" }
+    ]
+  }
+  

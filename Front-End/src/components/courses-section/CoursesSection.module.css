@@ -1,0 +1,51 @@
+.coursesSection {
+    padding: 1rem;
+    font-size: 1rem;
+    text-align: center; /* Center all text inside coursesSection */
+}
+
+.coursesSectionTitle {
+    font-weight: bold;
+    font-size: 2.5rem; /* Adjust size as needed */
+    margin: 0.6rem 0;
+    animation: fadeInOut 6s ease-in-out infinite; /* Apply fade-in and fade-out animation */
+}
+
+.coursesSection p {
+    font-size: 1.2rem;
+    margin-top: 1rem; /* Add some spacing below the title */
+}
+
+@media only screen and (min-width: 500px) {
+    .coursesSection {
+        padding: 3rem;
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .coursesSectionTitle {
+        font-size: 2.5rem !important;
+    }
+
+    .coursesSection {
+        padding: 2rem;
+    }
+}
+
+@media only screen and (min-width: 921px) {
+    .coursesSectionTitle {
+        font-size: 2.5rem !important;
+    }
+}
+
+/* Keyframe for smooth fade-in and fade-out */
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    10%, 90% {
+        opacity: 1;
+    }
+}

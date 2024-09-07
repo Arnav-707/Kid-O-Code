@@ -1,0 +1,113 @@
+.welcomeSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #96d8f2;
+    background-image: url('../../materials/Clouds.gif');
+    border-radius: 8px;
+    margin: 20px;
+    width: 90%;
+    max-width: 1500px;
+    margin: 20px auto;
+    min-height: 300px;
+}
+
+h1 {
+    font-size: 3.5rem; 
+    font-weight: bold;
+    color: #333;
+}
+
+.getStartedButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background-color: #0563c2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.getStartedButton:hover {
+    background-color: #054a8b;
+}
+
+.textContainer {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 2.3rem;
+    font-weight: 200;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #555;
+    text-align: center;
+}
+
+/* Styles for the second section */
+.imageSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1500px;
+}
+
+.imageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.image {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.imageContainer p {
+    font-size: 1.2rem;
+    color: #555;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.imageSection1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1500px;
+    background-image: url('../../materials/Hero3BG.png');
+}
+
+.imageContainer1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.welcomeSection1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+
+    border-radius: 8px;
+    margin: 20px;
+    width: 90%;
+    max-width: 1500px;
+    margin: 20px auto;
+    min-height: 300px;
+}

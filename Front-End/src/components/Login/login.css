@@ -1,0 +1,98 @@
+/*LoginJS*/
+#main{
+  height: 190%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  image-resolution: 100% 100%;
+  background-image: url('../../materials/Login.jpg');
+  background-size: 100% 120%;
+}
+#naam{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  width: 420px; 
+  height: 400px;
+  height: auto;
+  border: 0px white solid;
+  background-color: rgba(140, 139, 139, 0.5);
+  border-radius: 20px;
+  padding: 49px;
+  opacity: 0.9;
+  color: black;
+  background-size: 100% 100%;
+}
+#naam > h1{
+  font-size: 50px;
+  margin-top: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  padding: 32px;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 380px;
+}
+input{
+  width: 350px;
+  height: 40px;
+  border: 0px solid white;
+  border-radius: 40px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: black;
+  color: white;
+  margin-bottom: 10px;
+}
+.btn{
+  width: 150px;
+  height: 40px;
+  border: 0px solid white;
+  border-radius: 40px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: black;
+  color: white;
+  margin-top:10px;
+}
+.btn:hover{
+  background-color: white;
+  color: black;
+  transition: 0.8s ;
+}
+a:hover{
+  color: white;
+  transition: 0.8s ;
+}
+@media screen and (max-width: 420px) {
+  #naam > h1{
+    font-size: 10px;
+  }
+  input{
+    width: 300px;
+    height: 40px;
+    border: 0px solid white;
+    border-radius: 40px;
+    padding: 10px;
+    font-size: 20px;
+    background-color: black;
+    color: white;
+    margin-bottom: 10px;
+  }
+  .btn{
+    width: 150px;
+    height: 40px;
+    border: 0px solid white;
+    border-radius: 40px;
+  }
+}
