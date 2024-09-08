@@ -25,7 +25,7 @@ First, create a new directory for your project and navigate into it:
 
 bash
 
-``` mkdir my-mern-app cd my-mern-app ``` 
+``` mkdir Kid-O-code cd Kid-O-code ``` 
 
 2. Initialize a Node.js Project
 
