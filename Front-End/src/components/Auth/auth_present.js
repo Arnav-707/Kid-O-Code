@@ -1,4 +1,3 @@
-import axios from 'axios';
 const isTokenExpired = async(token) => {
     try {
         // const response = await axios.post('http://localhost/api/protected', { token });

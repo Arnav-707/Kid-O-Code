@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Navbar from './NAVIBAR';
 import './Solution.css';
 import Editor from "@monaco-editor/react";
-import Axios from 'axios';
 import spinner from './spinner.svg';
 
 function EditorPage() {

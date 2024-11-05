@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const login = async (username, password) => {
     try{
         const response = await fetch('http://localhost/api/login', {
