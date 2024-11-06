@@ -24,7 +24,17 @@ const App = () => {
     const [coursesData, setCoursesData] = useState({});
     const [fetched, setAsFetched] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-
+    useEffect(() => {
+        const getData = () => {
+            fetch('https://api.npoint.io/97d7e0d71e507947a59f')
+                .then((response) => response.json())
+                .then((jsonFile) => {
+                    setCoursesData(jsonFile['data']);
+                    setAsFetched(true);
+                });
+        };
+        getData();
+    }, []);
     return (
         <div className='App'>
             <Data.Provider value={coursesData}>

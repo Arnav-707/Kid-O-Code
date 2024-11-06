@@ -79,7 +79,7 @@ app.post('/login',async (req,res)=>{
         console.log(err);
     }
 })
-app.post('/protected', verifyToken,async (req,res)=>{
+app.post('/protected', verifyToken ,async (req,res)=>{
     try{
         const {token} = JSON.stringify(req.token);
         console.log(typeof(token))
@@ -95,28 +95,20 @@ app.post('/protected', verifyToken,async (req,res)=>{
         console.log(err);
     }
 })
-const Leaderboard = mongoose.model('Leaderboard', leaderboardSchema, 'leaderboard');
 app.get('/leaderboard', async (req, res) => {
     try {
-      const users = await Leaderboard.find(); // Fetch data from the leaderboard collection
+      const users = await db.collection('leaderboard').find({}).toArray(); // Fetch data from the leaderboard collection
       res.json(users);
     } catch (err) {
       console.error('Error fetching users:', err);
       res.status(500).json({ error: 'Failed to fetch users' });
     }
   });
-  const quizSchema = new mongoose.Schema({
-    question: { type: String, required: true },
-    options: { type: [String], required: true },
-    answer: { type: String, required: true },
-  });
-  
-  const Quiz = mongoose.model('Quiz', quizSchema, 'quizezs');
-  
-  // API route to fetch quiz questions
+
+// API route to fetch quiz questions
   app.get('/quiz', async (req, res) => {
     try {
-      const questions = await Quiz.find();
+      const questions = await db.collection("Quizez").find().toArray();
       res.json(questions);
     } catch (err) {
       console.error('Error fetching quiz questions:', err);

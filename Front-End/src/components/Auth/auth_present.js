@@ -1,6 +1,5 @@
 const isTokenExpired = async(token) => {
     try {
-        // const response = await axios.post('http://localhost/api/protected', { token });
         const response = await fetch('http://localhost/api/protected', {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
