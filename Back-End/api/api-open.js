@@ -1,6 +1,10 @@
 const express = require("express");
 const cors = require('cors');
 const {generateFile} = require("./gen_file")
+const { executeCpp } = require("../executor/cpp");
+const { executeC } = require("../executor/c");
+const { executeJava } = require("../executor/java");
+const { executePy } = require("../executor/python");
 var bodyParser = require('body-parser');
 const app = express();
 app.use(express.static("public"));
@@ -8,8 +12,6 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json());
 const mongoose = require('mongoose');
 app.use(cors());
-const { addJobToQueue } = require("../job_queue");
-const Job = require('../schema/jobs');
 
 const url = require("dotenv").config().parsed.url;
 mongoose.connect(url)
@@ -25,10 +27,23 @@ app.post("/compile",async (req,res)=>{
     if(code == undefined){
         return res.status(404).json({success:false,error:"Empty Code"});
     }
-    const filepath = await generateFile(language,code);
-    const job = await new Job({ language, filepath }).save();
-    const jobId = job["_id"];
-    addJobToQueue(jobId);
-    res.status(201).json({ jobId });
+    try {
+        const filepath = await generateFile( language, code );
+        let output;
+        if (language === "c") {
+            output = await executeC(filepath);
+        } else if (language === "python") {
+            output = await executePy(filepath);
+        } else if (language === "cpp") {
+            output = await executeCpp(filepath);
+        }
+        else if (language==='java'){
+            output = await executeJava(filepath);
+        }
+        return res.json({ filepath, output });
+    } catch(err) {
+        res.status(500).json({ err });
+    }
+
 })
 module.exports = app;
