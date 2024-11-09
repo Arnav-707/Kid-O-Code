@@ -39,20 +39,20 @@ function EditorPage() {
         }
 
         // Post request to compile endpoint
-        await fetch('http://localhost/api/login', {
+    const response=  await fetch('http://jerry/api/open/compile', {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({"language":userLang,"code":userCode})
         }
-    ).then((res) => {
-            setUserOutput(res.data.stdout || res.data.stderr);
-        }).then(() => {
-            setLoading(false);
-        }).catch((err) => {
-            console.error(err);
-            setUserOutput("Error: " + (err.response ? err.response.data.error : err.message));
-            setLoading(false);
-        });
+    )
+    const data = await response.json();
+    if(data.output!==undefined){
+        setUserOutput(data.output);
+        setLoading(false);
+    }
+    else{
+        setLoading(false);
+    }
     }
 
     // Function to clear the output screen
