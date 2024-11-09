@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 let dotenv = require('dotenv').config();
 const url = dotenv.parsed.url;
-const leaderboardSchema = require('../schema/Leaderboard.Schema');
+// const leaderboardSchema = require('../schema/Leaderboard.Schema');
 
 //Database connection
 mongoose.connect(url)
@@ -26,7 +26,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true})) 
 app.use(bodyParser.json());
 
-const secretkey = "ThisisnutsIcan'tevenfathomhowdidIgettohere,butyeahitwork"
+const secretkey = dotenv.parsed.secretkey;
 //Routes
 app.post("/signup",async (req,res)=>{
     try{
