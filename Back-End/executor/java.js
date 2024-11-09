@@ -16,9 +16,15 @@ const executeJava = (filepath) => {
     exec(
       `java ${filepath}`,
       (error, stdout, stderr) => {
-        error && reject({ error, stderr });
-        stderr && reject(stderr);
-        resolve(stdout);
+        if(stderr){
+          resolve(stderr);
+      }
+      else if (stdout){
+          resolve(stdout);
+      }
+      else{
+          resolve(error);
+      }
       }
     );
   });
