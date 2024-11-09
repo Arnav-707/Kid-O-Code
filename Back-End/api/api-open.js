@@ -40,7 +40,10 @@ app.post("/compile",async (req,res)=>{
         else if (language==='java'){
             output = await executeJava(filepath);
         }
+        console.log(output);
         return res.json({ filepath, output });
+      
+
     } catch(err) {
         res.status(500).json({ err });
     }
