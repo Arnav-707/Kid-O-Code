@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react';
 import HomePage from './pages/home/HomePage';
 import NavBar from './components/nav-bar/NavBar';
-import { Route, Routes } from 'react-router-dom';
-import SingleCoursePage from './pages/single-course-page/SingleCoursePage';
+import { Route, Routes,Navigate } from 'react-router-dom';
+// import SingleCoursePage from './pages/single-course-page/SingleCoursePage';
 import PageNotFound from './components/page-not-found/PageNotFound';
 import Footer from './components/footer/Footer';
 import CoursesPage from './components/Course-Page/CoursesPage';
@@ -43,6 +43,7 @@ const App = () => {
                         <SetSearchTermContext.Provider value={setSearchTerm}>
                             <NavBar />
                             <Routes>
+                            <Route exact path="/" element={<Navigate replace to="/homepage" />} />
                                 <Route path='/HomePage' element={<HomePage />} />
                                 
                                 <Route path='/courses' element={<CoursesPage />} />

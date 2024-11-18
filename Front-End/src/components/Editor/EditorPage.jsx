@@ -39,7 +39,7 @@ function EditorPage() {
         }
 
         // Post request to compile endpoint
-    const response=  await fetch('http://jerry/api/open/compile', {
+    const response=  await fetch('http://localhost/api/open/compile', {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({"language":userLang,"code":userCode})

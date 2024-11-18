@@ -7,7 +7,6 @@ const login = async (username, password) => {
             }
         ).then(response => response.json()).then()
         localStorage.setItem('token', response.token);
-        console.log(response.token);
         window.location.href='/homepage';
     } catch (error) {
       console.error(error);
