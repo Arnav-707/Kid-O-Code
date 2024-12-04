@@ -5,6 +5,19 @@ import { Link } from 'react-router-dom';
 import NewLogo from '../../materials/logo-kid.png';
 import {isAuthenticated} from '../Auth/auth_present';
 
+const onLogOut = ()=>{
+    var logout = false
+    fetch("http://localhost/api/logout").then(()=>{
+        logout=true;
+    }).catch((err)=>{
+        console.log(err);
+    });
+    // if(true){
+        localStorage.removeItem("token");
+        window.location.href='/login';
+    // }
+}
+
 function NavBar() {
     const auth = isAuthenticated();
     return (
@@ -43,15 +56,21 @@ function NavBar() {
                         </button>
                     </Link>:<Link to='/login'>
                         <button type='button' name='login-button'>
-                            {auth?"Log out":"log in"}
+                            Log In
                         </button>
                     </Link>}
                 </li>
                 <li className={styles.signupButton}>
                     <Link to='/login'>
-                        <button type='button' name='login-button'>
-                        {auth?"Log out":"log in"}
-                        </button>
+                        {auth?<button type='button' name='login-button' onClick={()=>onLogOut()}>
+                            Log Out
+                            </button>
+                            :
+                            <button type='button' name='login-button'>
+                            Log In
+                            </button> 
+                            }
+                        
                     </Link>
                 </li>
                 {/* <li className={styles.langButton}>
