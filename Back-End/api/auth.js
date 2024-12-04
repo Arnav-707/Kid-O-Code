@@ -1,13 +1,15 @@
 const jwt = require('jsonwebtoken');
+let dotenv = require('dotenv').config();
+const jwtkey= dotenv.parsed.access_key;
 function verifyToken(token, next) {
 if (!token) return false;
 try {
- const decoded = jwt.verify(token, 'Testing134');
-    if(decoded){return true}
-    else{return false}
+   const decoded = jwt.verify(token, jwtkey);
+      if(decoded){return true}
+      else{return false}
  } catch (error) {
-//  res.status(401).json({ error: 'Invalid token' });
-    console.log(error)
+   res.status(401).json({ error: 'Invalid token' });
+  //  console.log(error)
  }
  };
 
