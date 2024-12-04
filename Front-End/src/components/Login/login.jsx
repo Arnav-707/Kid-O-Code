@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import './login.css';
 import {login} from '../Auth/login'
-import { isAuthenticated } from "../Auth/auth_present";
 function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPass] = useState('');
-    if(!isAuthenticated()){
     return (
         <div id ="main">
             <div id="naam">
@@ -22,9 +20,4 @@ function LoginForm() {
         </div>
         );
     }
-    else{
-        window.location.href='/homepage';
-    }
-}
-
 export default LoginForm;
