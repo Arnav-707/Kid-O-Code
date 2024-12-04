@@ -16,15 +16,15 @@ const executeC = (filepath) => {
     exec(
       `gcc ${filepath} -o ${outPath} && cd ${outputPath} && ./${jobId}.out`,
       (error, stdout, stderr) => {
-        if(stderr){
+        if (stderr) {
           resolve(stderr);
-      }
-      else if (stdout){
+        }
+        else if (stdout) {
           resolve(stdout);
-      }
-      else{
+        }
+        else {
           resolve(error);
-      }
+        }
       }
     );
   });
