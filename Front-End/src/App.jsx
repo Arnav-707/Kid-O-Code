@@ -7,6 +7,7 @@ import PageNotFound from './components/page-not-found/PageNotFound';
 import Footer from './components/footer/Footer';
 import CoursesPage from './components/Course-Page/CoursesPage';
 import Login from './components/Login/login';
+import Signup from './components/Login/signup';
 import Leaderboard from './components/leaderboard/leaderboard';
 import Quiz from './components/quiz/Quiz';
 import PreQuizForm from './components/PreQuiz/PreQuiz';
@@ -49,6 +50,8 @@ const App = () => {
                                 <Route path='/courses' element={<CoursesPage />} />
 
                                 <Route path="/login" element={<Login/>} />
+                                
+                                <Route path="/signup" element={<Signup/>} />
 
                                 <Route path="/leaderboard" element={<Leaderboard />} />
 
