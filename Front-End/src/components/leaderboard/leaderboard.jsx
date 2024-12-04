@@ -1,31 +1,62 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Leaderboard.module.css';
-import axios from 'axios';
+import { isAuthenticated } from '../Auth/auth_present';
 
 const Leaderboard = () => {
-  const [users, setUsers] = useState([]);
+  const [user, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [loginerr, setlogerr] = useState(false);
 
-  const API_URL = 'http://localhost/api/leaderboard'; // Update to your Node.js server endpoint
+  const API_URL = 'http://localhost/api/leaderboard'; 
 
   useEffect(() => {
     const fetchData = async () => {
+      const token = localStorage.getItem("token");
+      if(token){
       try {
-        const response = await axios.get(API_URL);
-        const sortedUsers = response.data.sort((a, b) => b.score - a.score);
-        setUsers(sortedUsers);
+        const res = await fetch(API_URL, {
+          method:"POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token:token})
+      })
+      const response = await res.json();
+      if(response.message!=='Not Auth'){ 
+        setUsers(response);
         setLoading(false);
+      }
+      else{
+        isAuthenticated()
+        setlogerr(true);
+        setLoading(false);
+      }
       } catch (err) {
         console.error('Error fetching leaderboard data:', err);
         setError(true);
         setLoading(false);
       }
+    }
+    else{
+      setlogerr(true);
+      setLoading(false);
+    }
     };
 
     fetchData();
   }, []);
-
+  const renderData = Object.values(user)
+  .map((user,index=0)=>{
+return(
+    <tr key={index} className={styles.tableRow}>
+              <td className={styles.rankCell}>{index + 1}</td>
+              <td className={styles.userCell}>
+                <img src={user.avatar} alt={`${user.name}'s avatar`} className={styles.avatar} />
+                <span>{user.name}</span>
+              </td>
+              <td className={styles.scoreCell}>{user.score}</td>
+            </tr>
+)
+  });
   if (loading) {
     return (
       <div className={styles.loaderContainer}>
@@ -38,7 +69,9 @@ const Leaderboard = () => {
   if (error) {
     return <p className={styles.error}>Failed to load leaderboard data. Please try again later.</p>;
   }
-
+  if( loginerr){
+    return <p className={styles.error}>Failed to load leaderboard data. Please Login.</p>;
+  }
   return (
     <div className={styles.leaderboardContainer}>
       <h1 className={styles.title}>Leaderboard</h1>
@@ -51,19 +84,10 @@ const Leaderboard = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user, index) => (
-            <tr key={user.id} className={styles.tableRow}>
-              <td className={styles.rankCell}>{index + 1}</td>
-              <td className={styles.userCell}>
-                <img src={user.avatar} alt={`${user.name}'s avatar`} className={styles.avatar} />
-                <span>{user.name}</span>
-              </td>
-              <td className={styles.scoreCell}>{user.score}</td>
-            </tr>
-          ))}
+          {renderData}
         </tbody>
-      </table>
-    </div>
+     </table>
+     </div>
   );
 };
 
