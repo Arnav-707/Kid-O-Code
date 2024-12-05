@@ -8,8 +8,8 @@ try {
       if(decoded){return true}
       else{return false}
  } catch (error) {
-   res.status(401).json({ error: 'Invalid token' });
-  //  console.log(error)
+   console.log(error)
+   return {error:error};
  }
  };
 
