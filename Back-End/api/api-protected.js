@@ -2,14 +2,14 @@ const express = require("express");
 const cors = require('cors');
 const bcrypt = require("bcrypt");
 const verifyToken = require('./auth');
+const {nanoid} = require('./nanoid_gen');
 const mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 let dotenv = require('dotenv').config();
 const url = dotenv.parsed.url;
-const {create_JWT, refresh_JWT} = require('./jwt_gen');
+const {create_JWT, refresh_JWT,decode_JWT} = require('./jwt_gen');
 const {send_mail} = require("./node-mail");
 const cookieparser = require('cookie-parser');
-const { assign } = require("nodemailer/lib/shared");
 //Database connection
 mongoose.connect(url)
     .then(() => {
@@ -50,11 +50,12 @@ app.post("/signup", async (req, res, next) => {
 
         const hash_password = await bcrypt.hash(password, saltRounds)
 
+        const unique_id = nanoid();
         const data_user = {
             "name": name,
             "email": email,
             "password": hash_password
-            // ,"unique_number": unique_number
+            ,"unique_id": unique_id
         }
         if (!user) {
             db.collection('Users').insertOne(data_user, function (err) {
@@ -62,16 +63,24 @@ app.post("/signup", async (req, res, next) => {
                 console.log("Record inserted Successfully");
                 console.log(data_user);
             });
-            send_mail(name);
+            const leaderboard_user={
+                "name": name,
+                "email": email,
+                "score": 0
+                ,"unique_id": unique_id
+            }
+            await db.collection('leaderboard').insertOne(leaderboard_user,()=>{
+                console.log("New signup at leaderboard")
+            });
+            // send_mail(name);
             const {access_token,refresh_token}= create_JWT(data_user);
             res.cookie('jwt', refresh_token,{
-                httpOnly: true,
+                httpOnly: false,
                 sameSite: 'None' , secure: true,
                 maxAge:24*60*60*1000
             },()=>{
                 console.log("Cookie created")
             });
-            next();
             res.json({ 'token': access_token });
         }
         else {
@@ -103,7 +112,6 @@ app.post('/login', async (req, res) => {
                 },()=>{
                     console.log("Cookie created")
                 });
-                console.log(access_token);
                 res.json({ 'token': access_token });;
             }
             else {
@@ -174,6 +182,18 @@ app.get('/quiz', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch quiz questions' });
     }
 });
-
+app.post("/quiz", async(req,res)=>{
+    console.log(req.cookies.jwt);
+    // try{
+    //     const email = await decode_JWT(req.cookies.jwt);
+    //     const {score} = req.body;
+    //     db.collection('leaderboard').updateOne({ email: email },{$set:{score:score}},()=>{
+    //         console.log(`updated ${email}'s score to ${score}` );
+    //     });
+    // }
+    // catch(err){
+    //     console.log(err);
+    // }
+})
 
 module.exports = app;
