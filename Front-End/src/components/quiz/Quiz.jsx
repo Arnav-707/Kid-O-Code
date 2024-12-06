@@ -13,8 +13,8 @@ const QuizPage = () => {
         // Fetch quiz questions from the backend
         const fetchQuestions = async () => {
             try {
-                const response = await axios.get('http://jerry/api/quiz');
-                console.log(response.data[0].ques)
+                const response = await axios.get('http://localhost/api/quiz');
+                // console.log(response)
                 setQuestions(response.data);
             } catch (err) {
                 console.error('Error fetching quiz questions:', err);
@@ -44,11 +44,29 @@ const QuizPage = () => {
         }
     };
 
+    const sendscore = async (score)=>{
+        try{
+            await fetch("http://localhost/api/quiz", {
+                method:"POST",
+                credentials: "include",
+                headers: [
+                  ["Content-Type", "application/json"],
+                  ["Content-Type", "text/plain"]
+                ],
+                body: JSON.stringify({"score":score})
+            })
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
     const calculateScore = () => {
         return answers.filter((answer, index) => answer === questions[index].answer).length;
     };
 
     if (isCompleted) {
+        sendscore(calculateScore());
         return (
             <div className={styles.resultContainer}>
                 <h1 className={styles.title}>Quiz Completed!</h1>
@@ -61,24 +79,24 @@ const QuizPage = () => {
     return (
         <div className={styles.quizContainer}>
             <h1 className={styles.title}>Quiz: Check Your Knowledge</h1>
-            {questions.length > 0 ? (<></>
-                // <>
-                //     <div className={styles.timer}>Time Left: {time} seconds</div>
-                //     <div className={styles.questionContainer}>
-                //         <p className={styles.question}>{questions[currentQuestion].question}</p>
-                //         <div className={styles.options}>
-                //             {questions[currentQuestion].options.map((option, index) => (
-                //                 <button
-                //                     key={index}
-                //                     className={styles.optionButton}
-                //                     onClick={() => handleOptionClick(option)}
-                //                 >
-                //                     {option}
-                //                 </button>
-                //             ))}
-                //         </div>
-                //     </div>
-                // </>
+            {questions.length > 0 ? (
+                <>
+                    <div className={styles.timer}>Time Left: {time} seconds</div>
+                    <div className={styles.questionContainer}>
+                        <p className={styles.question}>{questions[currentQuestion].question}</p>
+                        <div className={styles.options}>
+                            {questions[currentQuestion].options.map((option, index) => (
+                                <button
+                                    key={index}
+                                    className={styles.optionButton}
+                                    onClick={() => handleOptionClick(option)}
+                                >
+                                    {option}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </>
             ) : (
                 <p>Loading questions...</p>
             )}
