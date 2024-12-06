@@ -14,7 +14,7 @@ import PreQuizForm from './components/PreQuiz/PreQuiz';
 import Compiler from './components/compiler/complier';
 import EditorPage from './components/Editor/EditorPage';
 import About from './components/About/About';
-
+import { isAuthenticated } from './components/Auth/auth_present';
 
 export const Data = createContext();
 export const FetchState = createContext();
@@ -22,6 +22,7 @@ export const SearchTermContext = createContext();
 export const SetSearchTermContext = createContext();
 
 const App = () => {
+    const isAuth = isAuthenticated();
     const [coursesData, setCoursesData] = useState({});
     const [fetched, setAsFetched] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
@@ -49,15 +50,15 @@ const App = () => {
                                 
                                 <Route path='/courses' element={<CoursesPage />} />
 
-                                <Route path="/login" element={<Login/>} />
+                                <Route path="/login" element={isAuth?<Navigate replace to="/homepage" />:<Login/>} />
                                 
-                                <Route path="/signup" element={<Signup/>} />
+                                <Route path="/signup" element={isAuth?<Navigate replace to="/homepage" />:<Signup/>} />
 
-                                <Route path="/leaderboard" element={<Leaderboard />} />
+                                <Route path="/leaderboard" element={!isAuth?<Navigate replace to="/Login" />:<Leaderboard/>} />
 
                                 <Route path="/quiz" element={<Quiz/>} />
 
-                                <Route path="/PreQuiz" element={<PreQuizForm/>} />
+                                <Route path="/PreQuiz" element={!isAuth?<Navigate replace to="/Login" />:<PreQuizForm/>} />
 
                                 <Route path="/compiler" element={<Compiler/>} />
 
