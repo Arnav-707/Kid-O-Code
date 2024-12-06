@@ -46,7 +46,6 @@ const Leaderboard = () => {
   }, []);
   const renderData = Object.values(user)
   .map((user,index=0)=>{
-    // console.log(user)
 return(
     <tr key={index} className={styles.tableRow}>
               <td className={styles.rankCell}>{index + 1}</td>
