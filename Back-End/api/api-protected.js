@@ -10,6 +10,7 @@ const url = dotenv.parsed.url;
 const {create_JWT, refresh_JWT,decode_JWT} = require('./jwt_gen');
 const {send_mail} = require("./node-mail");
 const cookieparser = require('cookie-parser');
+const {randomizer} = require("./randomizer");
 //Database connection
 mongoose.connect(url)
     .then(() => {
@@ -174,8 +175,8 @@ app.post('/leaderboard', async (req, res) => {
 app.get('/quiz', async (req, res) => {
     try {
         const questions = await db.collection("quizezs").find().toArray();
-        console.log(questions);
-        res.json(questions);
+        const random = randomizer(questions);
+        res.json(random);
     } catch (err) {
         console.error('Error fetching quiz questions:', err);
         res.status(500).json({ error: 'Failed to fetch quiz questions' });
