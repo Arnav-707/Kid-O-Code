@@ -1,7 +1,7 @@
 import { isAuthenticated } from "./auth_present";
 const login = async (username, password) => {
     // First see if a vaild token is present or not
-    if(!isAuthenticated()){
+    if(username && password){
     try{
         const response = await fetch('http://localhost/api/login', {
                 method:"POST",
@@ -20,7 +20,7 @@ const login = async (username, password) => {
     };
     return false;}
     else{
-      window.location.href='/homepage';
+      return false;
     }
 };
 
