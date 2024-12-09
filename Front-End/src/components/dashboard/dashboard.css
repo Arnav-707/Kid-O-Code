@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .App-header {
+    background-color: rgb(55, 192, 192);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 20px;
+  }
+  
+  .progress-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  h2 {
+    color: rgb(55, 192, 192);
+  }
+  
+  .personal-info p{
+    text-align: left,
+  }
+  .quiz-results,
+  .progress-bar {
+    margin-bottom: 20px;
+    /* text-align: left !important; */
+}
+ .info{
+    text-align: left;
+ } 
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  table th,
+  table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: rgb(55, 192, 192);
+    color: white;
+  }
+  
+  .progress-track {
+    background-color: #ddd;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+  
+  .progress-fill {
+    background-color: rgb(55, 192, 192);
+    height: 100%;
+    text-align: center;
+    line-height: 20px;
+    color: white;
+  }
+  
