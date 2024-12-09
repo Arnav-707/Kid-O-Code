@@ -15,6 +15,7 @@ import Compiler from './components/compiler/complier';
 import EditorPage from './components/Editor/EditorPage';
 import About from './components/About/About';
 import { isAuthenticated } from './components/Auth/auth_present';
+import Dashboard from './components/dashboard/dashboard';
 
 export const Data = createContext();
 export const FetchState = createContext();
@@ -57,6 +58,8 @@ const App = () => {
                                 <Route path="/leaderboard" element={!isAuth?<Navigate replace to="/Login" />:<Leaderboard/>} />
 
                                 <Route path="/quiz" element={<Quiz/>} />
+
+                                <Route path="/dashboard" element={<Dashboard/>} />
 
                                 <Route path="/PreQuiz" element={!isAuth?<Navigate replace to="/Login" />:<PreQuizForm/>} />
 
