@@ -1,5 +1,5 @@
 import React from "react";
-import "./dashboard.css";
+import "./dashboard.module.css";
 import { userData, quizData } from "./data";
 
 function Dasboard() {

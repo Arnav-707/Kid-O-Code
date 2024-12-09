@@ -50,7 +50,7 @@ return(
     <tr key={index} className={styles.tableRow}>
               <td className={styles.rankCell}>{index + 1}</td>
               <td className={styles.userCell}>
-                <img src={user.avatar} alt={`${user.name}'s avatar`} className={styles.avatar} />
+                {/* <img src={user.avatar} alt={`${user.name}'s avatar`} className={styles.avatar} /> */}
                 <span>{user.name}</span>
               </td>
               <td className={styles.scoreCell}>{user.score}</td>
